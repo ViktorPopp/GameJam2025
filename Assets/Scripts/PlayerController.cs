@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movement;
+    private Animator _animator;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
         _movement.Normalize();
 
         _rigidbody.linearVelocity = _movement * moveSpeed;
+        _animator.SetFloat("VelocityX", _rigidbody.linearVelocityX);
+        _animator.SetFloat("VelocityY", _rigidbody.linearVelocityY);
     }
 
     void FixedUpdate()
