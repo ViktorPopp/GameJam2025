@@ -395,9 +395,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131936a45de828047b4197d45113fe49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  acceleration: 2000
-  maxSpeed: 10
+  speed: 10
   jumpForce: 10
+  normalGravity: 1
+  fallingGravity: 1.5
+  debugHorizontalInput: 0
+  debugJump: 0
+  debugRaycastDistance: 0
 --- !u!50 &1477105419
 Rigidbody2D:
   serializedVersion: 5

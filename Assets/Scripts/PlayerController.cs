@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Playermovement")]
-    [SerializeField] private float acceleration = 2000.0f;
-    [SerializeField] private float maxSpeed = 10.0f;
+    [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpForce = 10.0f;
 
     [Header("Gravity")]
@@ -16,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private float debugHorizontalInput = 0;
     [SerializeField] private bool debugJump = false;
+    [SerializeField] private float debugRaycastDistance = 0;
 
     private Rigidbody2D rb;
 
@@ -25,8 +25,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
@@ -34,20 +33,14 @@ public class PlayerController : MonoBehaviour
         debugHorizontalInput = horizontalInput;
         debugJump = jump;
 
-        rb.AddForceX(horizontalInput * acceleration * Time.deltaTime, ForceMode2D.Force);
+        rb.linearVelocityX = horizontalInput * speed;
 
+        debugRaycastDistance = Physics2D.Raycast(transform.position, Vector2.down).distance;
         jump = Physics2D.Raycast(transform.position, Vector2.down).distance < 1 && jump;
 
         if (jump)
         {
             rb.AddForceY(jumpForce, ForceMode2D.Impulse);
-        }
-
-
-
-        if (rb.linearVelocityX > maxSpeed)
-        {
-            rb.linearVelocityX = maxSpeed;
         }
         rb.gravityScale = rb.linearVelocityY >= 0 /* positiv */ ? normalGravity : fallingGravity;
     }
