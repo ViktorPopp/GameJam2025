@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -12,34 +13,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float normalGravity = 1f;
     [SerializeField] private float fallingGravity = 1.5f;
 
-    private Rigidbody2D rigidbody;
+    [Header("Debug")]
+    [SerializeField] private float debugHorizontalInput = 0;
+    [SerializeField] private bool debugJump = false;
+
+    private Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        bool jump = Input.GetKeyDown(KeyCode.Space);
+        bool jump = Input.GetButtonDown("Jump");
 
-        rigidbody.AddForceX(horizontalInput * acceleration * Time.deltaTime, ForceMode2D.Force);
+        debugHorizontalInput = horizontalInput;
+        debugJump = jump;
 
+        rb.AddForceX(horizontalInput * acceleration * Time.deltaTime, ForceMode2D.Force);
+
+        jump = Physics2D.Raycast(transform.position, Vector2.down).distance < 1 && jump;
 
         if (jump)
         {
-            rigidbody.AddForceY(jumpForce, ForceMode2D.Impulse);
+            rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         }
 
 
 
-        if (rigidbody.linearVelocityX > maxSpeed)
+        if (rb.linearVelocityX > maxSpeed)
         {
-            rigidbody.linearVelocityX = maxSpeed;
+            rb.linearVelocityX = maxSpeed;
         }
-        rigidbody.gravityScale = rigidbody.linearVelocityY >= 0 /* positiv */ ? normalGravity : fallingGravity;
+        rb.gravityScale = rb.linearVelocityY >= 0 /* positiv */ ? normalGravity : fallingGravity;
     }
 }
