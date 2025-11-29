@@ -1,15 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Player Movement")]
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForce = 300f;
+    public float moveSpeed = 5f;
 
     private Rigidbody2D _rigidbody;
-    private float _moveHorizontal;
-    private bool _jump = false;
+    private Vector2 _movement;
 
     void Start()
     {
@@ -18,17 +14,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _moveHorizontal = Input.GetAxisRaw("Horizontal");
-        _jump = Input.GetButtonDown("Jump") && (Physics2D.Raycast(transform.position, Vector2.down, 1, ~(1 << 6)).collider != null);
-        if (_jump)
-        {
-            _rigidbody.AddForceY(jumpForce);
-        }
+        _movement.x = Input.GetAxisRaw("Horizontal");
+        _movement.y = Input.GetAxisRaw("Vertical");
+        _movement.Normalize();
+
+        _rigidbody.linearVelocity = _movement * moveSpeed;
     }
 
     void FixedUpdate()
     {
-        _rigidbody.linearVelocityX = _moveHorizontal * speed;
-        
+        _rigidbody.MovePosition(_rigidbody.position + _movement * moveSpeed * Time.fixedDeltaTime);
     }
 }
