@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gun")]
     [SerializeField] private float distanceToCharacter = 1.5f;
+    [SerializeField] private bool rapidFire = true;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movement;
@@ -38,6 +39,11 @@ public class PlayerController : MonoBehaviour
         _gunController.transform.position = _animator.transform.position + (_gunDirection * distanceToCharacter);
         _gunController.transform.eulerAngles = Vector3.forward * _gunAngle;
         _gunController.GetComponent<SpriteRenderer>().flipY = _gunAngle > 90 || _gunAngle < -90;
+
+        if (rapidFire ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0))
+        {
+            _gunController.Shoot();
+        }
     }
 
     void FixedUpdate()

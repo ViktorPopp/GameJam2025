@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 381765711}
   - component: {fileID: 381765712}
   - component: {fileID: 381765713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,13 +237,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381765710}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.17278863, w: 0.9849589}
-  m_LocalPosition: {x: 0.928, y: 0.12100005, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.874, y: -0.098, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1477105417}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.9}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &381765712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2d10d40fca2f545b402ae90fe2e0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunController
+  _bulletPrefab: {fileID: 5113628629592162484, guid: 106f2837f7b87bf4d9019b79b279b6b3, type: 3}
 --- !u!1 &1295286430
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
   distanceToCharacter: 1.5
+  rapidFire: 1
 --- !u!50 &1477105419
 Rigidbody2D:
   serializedVersion: 5
