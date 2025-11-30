@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Rocket"))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }
