@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private TMPro.TMP_Text lifeText;
+    [SerializeField] private TMPro.TMP_Text scoreText;
+
+    static public int score = 0;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movement;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
         }
 
         lifeText.text = "Health: " + _health;
+        scoreText.text = "Score: " + score;
     }
 
     void FixedUpdate()

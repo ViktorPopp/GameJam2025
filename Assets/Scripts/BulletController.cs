@@ -24,6 +24,7 @@ public class BulletController : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Destroy(collision.gameObject);
+                PlayerController.score += 1;
             }
             Destroy(gameObject);
         }
