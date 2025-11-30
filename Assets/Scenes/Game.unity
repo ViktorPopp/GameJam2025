@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 983140991}
   - component: {fileID: 983140990}
   - component: {fileID: 983140992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunController
   pivot: {fileID: 1863962574}
   player: {fileID: 1850752695}
+  bulletPrefab: {fileID: 5113628629592162484, guid: 106f2837f7b87bf4d9019b79b279b6b3, type: 3}
   radius: 0
 --- !u!1 &1252379324
 GameObject:
@@ -469,7 +470,7 @@ GameObject:
   - component: {fileID: 1529821648}
   m_Layer: 0
   m_Name: zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -650,7 +651,7 @@ GameObject:
   - component: {fileID: 1850752696}
   - component: {fileID: 1850752698}
   - component: {fileID: 1850752699}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -861,7 +862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1863962574}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
