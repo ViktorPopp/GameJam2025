@@ -3,6 +3,8 @@ using UnityEngine;
 public class ZombieController : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public Sprite frontSprite;
+    public Sprite backSprite;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _movement;
@@ -24,6 +26,15 @@ public class ZombieController : MonoBehaviour
         else
         {
             _movement = Vector2.zero;
+        }
+
+        if (_movement.y > 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = backSprite;
+        }
+        else if (_movement.y < 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = frontSprite;
         }
     }
 

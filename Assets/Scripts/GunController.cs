@@ -1,17 +1,23 @@
-using UnityEditor;
 using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab;
+    public Transform pivot;
+    public Transform player;
+    public float radius;
 
-    public void Shoot()
+    void Start()
     {
-        GameObject _bullet = Instantiate(_bulletPrefab);
-        _bullet.transform.SetParent(transform);
-        _bullet.transform.localPosition = Vector3.zero;
-        _bullet.transform.localRotation = Quaternion.identity;
-        _bullet.transform.SetParent(transform.parent.parent);
-        _bullet.SetActive(true);
+        transform.parent = pivot;
+        transform.position += Vector3.up * radius;
+    }
+
+    void Update()
+    {
+        Vector3 playerVector = Camera.main.WorldToScreenPoint(player.position);
+        playerVector = Input.mousePosition - playerVector;
+        float angle = Mathf.Atan2(playerVector.y, playerVector.x) * Mathf.Rad2Deg;
+
+        pivot.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 }
