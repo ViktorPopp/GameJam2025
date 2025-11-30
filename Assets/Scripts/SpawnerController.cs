@@ -15,7 +15,7 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private GameObject zombieSpawnZone;
     [SerializeField] private GameObject zombieNonSpawnZone;
 
-    private float timeSinceLastZombieSpawn = 0;
+    public float timeSinceLastZombieSpawn = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,9 +31,9 @@ public class SpawnerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if  (timeSinceLastZombieSpawn <= 0)
+        if (timeSinceLastZombieSpawn <= 0)
         {
-            timeSinceLastZombieSpawn = zombieSpawnRate;
+            timeSinceLastZombieSpawn = 1.0f / (zombieSpawnRate + PlayerController.score * 0.18f);
             SpawnZombie();
         }
         else
@@ -45,7 +45,7 @@ public class SpawnerController : MonoBehaviour
     public GameObject SpawnRocket()
     {
         Vector2 spawnPos = Vector2.zero;
-        
+
         while (true)
         {
             spawnPos = new Vector2(
