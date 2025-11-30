@@ -8,6 +8,8 @@ public class GunController : MonoBehaviour
     public GameObject bulletPrefab;
     public float radius;
 
+    [SerializeField] private bool RapidFireEDITOR_ONLY = false;
+
     void Start()
     {
         transform.parent = pivot;
@@ -22,7 +24,7 @@ public class GunController : MonoBehaviour
 
         pivot.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
-        if (Input.GetMouseButtonDown(0))
+        if (RapidFireEDITOR_ONLY ? Input.GetMouseButton(0) : Input.GetMouseButtonDown(0))
         {
             Quaternion rotation = pivot.rotation * Quaternion.Euler(0, 0, 90);
             Instantiate(bulletPrefab, transform.position, rotation);
