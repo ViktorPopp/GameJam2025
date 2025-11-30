@@ -48,5 +48,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player hit an enemy!");
             _health -= 2;
         }
+        if (collision.gameObject.CompareTag("Rocket"))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
